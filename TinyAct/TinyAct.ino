@@ -1,11 +1,40 @@
-#define MAX_COUNT 10
+#define MAX_COUNT       10
+#define SIN_LEN_QUARTER 256
+#define SIN_LEN         (SIN_LEN_QUARTER*4)
+
+char sineArray[SIN_LEN_QUARTER + 1];
 
 int actPin0 = 9;
 int actPin1 = 10;
 volatile int timer = 0;
 volatile int overflow = 100;
 volatile int go = 0;
+
+void buildSin( void )
+{
+  int i;
+  /* Create 1/4 sin wave + 1 point. */
+  for ( i = 0; i <= SIN_LEN_QUARTER; i++ )
+  {
+    sineArray[i] = (char)( 127.5 * sin( 2.0 * PI * i / SIN_LEN ) );
+//    Serial.print( (int)sineArray[i] );
+//    Serial.print( "\r\n" );
+  }
+}
+
+char sine( unsigned int index )
+{
+  index &= SIN_LEN - 1;
   
+  if ( index <= SIN_LEN_QUARTER )
+    return sineArray[index];
+  else if ( index <= 2 * SIN_LEN_QUARTER )
+    return sineArray[ 2 * SIN_LEN_QUARTER - index ];
+  else if ( index <= 3 * SIN_LEN_QUARTER )
+    return -sineArray[ index - 2 * SIN_LEN_QUARTER ];
+  else
+    return -sineArray[ SIN_LEN - index ];
+}
 
 void setPwmFrequency(int pin, int divisor) {
   byte mode;
@@ -84,6 +113,16 @@ void loop()
   long rate = 100;
   float angle = 0;
   char value;
+  int i;
+  
+  buildSin();
+  Serial.print( "Sine:\r\n" );
+  for ( i = 0; i <= SIN_LEN*2; i++ )
+  {
+    Serial.print( (int)sine(i) );
+    Serial.print( "\r\n" );
+  }
+  while (1);
   
   setFreq( 1 );
     
