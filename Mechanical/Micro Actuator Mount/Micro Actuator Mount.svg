@@ -59,7 +59,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -72,7 +72,7 @@
        style="fill:none;stroke:#000000"
        id="rect2985"
        width="177.16536"
-       height="124.01575"
+       height="95.669289"
        x="270.62659"
        y="256.48691" />
     <path
