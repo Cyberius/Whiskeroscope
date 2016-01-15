@@ -50,6 +50,14 @@
        orientation="1,0"
        position="287.84313,724.78445"
        id="guide2995" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="332.84526,756.60425"
+       id="guide3003" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="352.03816,739.43166"
+       id="guide3005" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -68,13 +76,11 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-2.8869629e-4)">
-    <rect
+    <path
        style="fill:none;stroke:#000000"
-       id="rect2985"
-       width="177.16536"
-       height="95.669289"
-       x="270.62659"
-       y="256.48691" />
+       d="M 270.625 256.5 L 270.625 312.9375 L 332.34375 312.9375 L 332.34375 352.15625 L 447.78125 352.15625 L 447.78125 256.5 L 270.625 256.5 z "
+       transform="translate(0,2.8869629e-4)"
+       id="rect2985" />
     <path
        sodipodi:type="arc"
        style="fill:none;stroke:#000000"
