@@ -1,0 +1,5 @@
+22/01/2016
+Micro motion amplitude seems smaller than last time.  Powering with external supply at 6V.  Running micro actuator from Abhi's laptop.  Had to install port driver.
+Sample rate 100000.  Averaging 100 samples.
+Bought guitar wire and glue.  The guitar wire looks perfect for a new whisker.  Bent and cut whisker to length.  No hot glue left.
+
