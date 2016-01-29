@@ -153,6 +153,7 @@
 				<Item Name="DAQmx Read.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/read.llb/DAQmx Read.vi"/>
 				<Item Name="DAQmx Rollback Channel If Error.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/create/channels.llb/DAQmx Rollback Channel If Error.vi"/>
 				<Item Name="DAQmx Set CJC Parameters (sub).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/create/channels.llb/DAQmx Set CJC Parameters (sub).vi"/>
+				<Item Name="DAQmx Stop Task.vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/task.llb/DAQmx Stop Task.vi"/>
 				<Item Name="DAQmx Timing (Burst Export Clock).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/timing.llb/DAQmx Timing (Burst Export Clock).vi"/>
 				<Item Name="DAQmx Timing (Burst Import Clock).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/timing.llb/DAQmx Timing (Burst Import Clock).vi"/>
 				<Item Name="DAQmx Timing (Change Detection).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/configure/timing.llb/DAQmx Timing (Change Detection).vi"/>
@@ -226,10 +227,10 @@
 				<Property Name="DistPart[0].productName" Type="Str">NI-DAQmx Runtime 15.1</Property>
 				<Property Name="DistPart[0].upgradeCode" Type="Str">{923C9CD5-A0D8-4147-9A8D-998780E30763}</Property>
 				<Property Name="DistPart[1].flavorID" Type="Str">DefaultFull</Property>
-				<Property Name="DistPart[1].productID" Type="Str">{ABA11EA6-E10F-4DE5-A918-1ADA8FFB045C}</Property>
-				<Property Name="DistPart[1].productName" Type="Str">NI LabVIEW Runtime 2015 f2</Property>
+				<Property Name="DistPart[1].productID" Type="Str">{7DCCFC14-D07D-495C-96A6-3B7BC8A6748C}</Property>
+				<Property Name="DistPart[1].productName" Type="Str">NI LabVIEW Runtime 2015 (64-bit)</Property>
 				<Property Name="DistPart[1].SoftDep[0].exclude" Type="Bool">false</Property>
-				<Property Name="DistPart[1].SoftDep[0].productName" Type="Str">NI ActiveX Container</Property>
+				<Property Name="DistPart[1].SoftDep[0].productName" Type="Str">NI ActiveX Container (64-bit)</Property>
 				<Property Name="DistPart[1].SoftDep[0].upgradeCode" Type="Str">{1038A887-23E1-4289-B0BD-0C4B83C6BA21}</Property>
 				<Property Name="DistPart[1].SoftDep[1].exclude" Type="Bool">false</Property>
 				<Property Name="DistPart[1].SoftDep[1].productName" Type="Str">NI System Web Server 15.0</Property>
@@ -238,10 +239,10 @@
 				<Property Name="DistPart[1].SoftDep[2].productName" Type="Str">Math Kernel Libraries</Property>
 				<Property Name="DistPart[1].SoftDep[2].upgradeCode" Type="Str">{4C0854AD-9BFC-4494-A4E0-D96C0C07F1F2}</Property>
 				<Property Name="DistPart[1].SoftDep[3].exclude" Type="Bool">false</Property>
-				<Property Name="DistPart[1].SoftDep[3].productName" Type="Str">NI Logos 15.0</Property>
+				<Property Name="DistPart[1].SoftDep[3].productName" Type="Str">NI Logos 5.6</Property>
 				<Property Name="DistPart[1].SoftDep[3].upgradeCode" Type="Str">{5E4A4CE3-4D06-11D4-8B22-006008C16337}</Property>
 				<Property Name="DistPart[1].SoftDep[4].exclude" Type="Bool">false</Property>
-				<Property Name="DistPart[1].SoftDep[4].productName" Type="Str">NI TDM Streaming 15.0</Property>
+				<Property Name="DistPart[1].SoftDep[4].productName" Type="Str">NI TDM Streaming 2.4</Property>
 				<Property Name="DistPart[1].SoftDep[4].upgradeCode" Type="Str">{4CD11BE6-6BB7-4082-8A27-C13771BC309B}</Property>
 				<Property Name="DistPart[1].SoftDep[5].exclude" Type="Bool">false</Property>
 				<Property Name="DistPart[1].SoftDep[5].productName" Type="Str">NI LabVIEW Real-Time NBFifo 2015</Property>
@@ -253,13 +254,13 @@
 				<Property Name="DistPart[1].SoftDep[7].productName" Type="Str">NI VC2010MSMs</Property>
 				<Property Name="DistPart[1].SoftDep[7].upgradeCode" Type="Str">{EFBA6F9E-F934-4BD7-AC51-60CCA480489C}</Property>
 				<Property Name="DistPart[1].SoftDep[8].exclude" Type="Bool">false</Property>
-				<Property Name="DistPart[1].SoftDep[8].productName" Type="Str">NI mDNS Responder 14.0</Property>
+				<Property Name="DistPart[1].SoftDep[8].productName" Type="Str">NI mDNS Responder 15.0</Property>
 				<Property Name="DistPart[1].SoftDep[8].upgradeCode" Type="Str">{9607874B-4BB3-42CB-B450-A2F5EF60BA3B}</Property>
 				<Property Name="DistPart[1].SoftDep[9].exclude" Type="Bool">false</Property>
 				<Property Name="DistPart[1].SoftDep[9].productName" Type="Str">NI Deployment Framework 2015</Property>
 				<Property Name="DistPart[1].SoftDep[9].upgradeCode" Type="Str">{838942E4-B73C-492E-81A3-AA1E291FD0DC}</Property>
 				<Property Name="DistPart[1].SoftDepCount" Type="Int">10</Property>
-				<Property Name="DistPart[1].upgradeCode" Type="Str">{CA8FF739-2EDA-4134-9A70-0F5DD933FDED}</Property>
+				<Property Name="DistPart[1].upgradeCode" Type="Str">{56A62DD7-5EBD-497A-ABD3-E18C6C8DE1B3}</Property>
 				<Property Name="DistPartCount" Type="Int">2</Property>
 				<Property Name="INST_autoIncrement" Type="Bool">true</Property>
 				<Property Name="INST_buildLocation" Type="Path">../builds/Whiskeroscope/Whiskeroscope Installer</Property>
@@ -268,8 +269,8 @@
 				<Property Name="INST_defaultDir" Type="Str">{42BCFB64-691F-4A2C-BC43-04DED8F241F8}</Property>
 				<Property Name="INST_productName" Type="Str">Whiskeroscope</Property>
 				<Property Name="INST_productVersion" Type="Str">1.0.3</Property>
-				<Property Name="InstSpecBitness" Type="Str">32-bit</Property>
-				<Property Name="InstSpecVersion" Type="Str">15008029</Property>
+				<Property Name="InstSpecBitness" Type="Str">64-bit</Property>
+				<Property Name="InstSpecVersion" Type="Str">15008024</Property>
 				<Property Name="MSI_autoselectDrivers" Type="Bool">true</Property>
 				<Property Name="MSI_distID" Type="Str">{070C0B7E-F539-4C51-B585-3EEA7D3ECAD6}</Property>
 				<Property Name="MSI_hideNonRuntimes" Type="Bool">true</Property>
