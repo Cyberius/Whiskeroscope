@@ -7,3 +7,6 @@ To do:
 2) Change software to log to memory instead
 
 29/01/2016
+New front end that collects log in memory to save when finished.  Results look good.
+Initial bug in setting reference.  Fixed later on.
+Brought hot glue gun.
