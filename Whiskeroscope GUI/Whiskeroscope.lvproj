@@ -13,6 +13,7 @@
 		<Item Name="DAQ Test.vi" Type="VI" URL="../DAQ Test.vi"/>
 		<Item Name="Dual Hall.vi" Type="VI" URL="../Dual Hall.vi"/>
 		<Item Name="Solve Force.vi" Type="VI" URL="../Solve Force.vi"/>
+		<Item Name="Whiskeroscope Main.vi" Type="VI" URL="../Whiskeroscope Main.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="DAQmx Create AI Channel (sub).vi" Type="VI" URL="/&lt;vilib&gt;/DAQmx/create/channels.llb/DAQmx Create AI Channel (sub).vi"/>
@@ -173,6 +174,7 @@
 			<Item Name="nilvaiu.dll" Type="Document" URL="nilvaiu.dll">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
+			<Item Name="Whiskeroscope Main - States.ctl" Type="VI" URL="../Whiskeroscope Main - States.ctl"/>
 		</Item>
 		<Item Name="Build Specifications" Type="Build">
 			<Item Name="Whiskeroscope" Type="EXE">
