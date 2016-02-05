@@ -9,4 +9,13 @@ To do:
 29/01/2016
 New front end that collects log in memory to save when finished.  Results look good.
 Initial bug in setting reference.  Fixed later on.
-Brought hot glue gun.
+Brought hot glue gun.  Made new whisker.  Works great.
+Tried smart buffer allocation.  Didn't make much difference.
+We found that 100Hz causes sensor clipping at a sweet spot when barely making contact.
+Motor short, but fixed.
+Looked at some signal processing.  Normalized raw data, subtracted two sensors and did frequency plot.  Showed some information in the frequency domain.
+
+05/02/2016
+Abhi doing further data processing/analysis.  Envelope detection.  Plotting envelope amplitude against sensor amplitude clearly shows difference between samples with/without tape.
+Added micro motion frequency sweep and amplitude control.  Now takes commands "f<frequency>", "a<amplitude>", "s<sweep freq target> <sweep rate>"
+Collected various sweep samples with/without tape and with thumb.  Used various forces.
