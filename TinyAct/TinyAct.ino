@@ -4,6 +4,10 @@
 #define SINE_DIVISOR    8
 #define SINE_INT_OVF    17
 
+#define MAX_FREQ        100
+#define MAX_AMPL        100
+#define MAX_RATE        100
+
 char sineArray[SIN_LEN_QUARTER + 1];
 
 int actPin0 = 9;
@@ -11,15 +15,21 @@ int actPin1 = 10;
 volatile int timer = 0;
 volatile int overflow = 100;
 volatile int go = 0;
-//volatile char test;
+char freq;
+char ampl = MAX_AMPL;
+char fsweep_freq_start;
+char fsweep_freq_end;
+int fsweep_rate;
+volatile int fsweep_count;
+char fsweeping = 0;
 
-void buildSin( void )
+void buildSin( char ampl )
 {
   int i;
   /* Create 1/4 sin wave + 1 point. */
   for ( i = 0; i <= SIN_LEN_QUARTER; i++ )
   {
-    sineArray[i] = (char)( 127.5 * sin( 2.0 * PI * i / SIN_LEN ) );
+    sineArray[i] = (char)( 127.5 * ampl * sin( 2.0 * PI * i / SIN_LEN ) / MAX_AMPL );
   }
 }
 
@@ -89,12 +99,13 @@ ISR(TIMER1_OVF_vect)
 
 ISR(TIMER2_COMPA_vect)
 {
-//  test = 1;
   if ( ++timer >= overflow )
   {
     timer = 0;
     go = 1;
   }
+  
+  fsweep_count--;
 }
 
 void setFreq( int hz )
@@ -108,11 +119,13 @@ void setFreq( int hz )
   }
   else
   {
-    hz = constrain( hz, 1, 100 );
+    hz = constrain( hz, 1, MAX_FREQ );
     overflow = ( (long long)CLOCK_FREQ * 2 / SIN_LEN / SINE_DIVISOR / 
                  SINE_INT_OVF / hz + 1 ) / 2;
     TIMSK2 |= _BV(OCIE2A);      // Enable Compare 2A Interrupt
   }
+  
+  freq = hz;
 }
 
 float getFreq( void )
@@ -123,7 +136,7 @@ float getFreq( void )
 
 void setup()
 {
-  buildSin();
+  buildSin( MAX_AMPL );
 //  testSine();
   
   Serial.begin(9600);
@@ -133,9 +146,6 @@ void setup()
   TCCR1A = ( TCCR1A & 0x0F ) | 0b11100000;  // Inverting pin 10.
   pinMode( actPin0, OUTPUT );
   pinMode( actPin1, OUTPUT );
-  
-//  TIMSK1 |= _BV(TOV1);
-//  TCCR2A = _BV(COM2A0) | _BV(WGM21);
   
   cli();
   
@@ -147,18 +157,23 @@ void setup()
   TIMSK2 |= _BV(OCIE2A);      // Enable Compare 2A
   
   sei();
-  
-//  SREG |= 0x80;
 } 
 
 void loop()
 {
+  typedef enum
+  {
+    MODE_NONE = 0,
+    MODE_INVALID,
+    MODE_FREQ,
+    MODE_AMPL,
+    MODE_FSWEEP,
+  } E_COMMS_MODE;
+  
   long rate = 100;
-//  float angle = 0;
   int angle = 0;
   char value;
-  
-//  while ( 1 );
+  E_COMMS_MODE comms_mode = MODE_NONE;
   
   setFreq( 1 );
   
@@ -166,53 +181,148 @@ void loop()
   {
     while ( Serial.available() > 0 )
     {
-      int hz = Serial.parseInt(); 
+      int val_int;
+      char mode_char;
+      
+      switch ( comms_mode )
+      {
+        case MODE_NONE:
+          mode_char = Serial.read(); 
+          
+          switch ( mode_char )
+          {
+            case 'F':
+            case 'f':
+              comms_mode = MODE_FREQ;
+              break;
+              
+            case 'A':
+            case 'a':
+              comms_mode = MODE_AMPL;
+              break;
+              
+            case 'S':
+            case 's':
+              comms_mode = MODE_FSWEEP;
+              break;
+              
+            default:
+              comms_mode = MODE_INVALID;
+              break;
+          }
+          break;
+          
+        case MODE_FSWEEP:
+          fsweep_freq_end = Serial.parseInt();
+        case MODE_FREQ:
+        case MODE_AMPL:
+          val_int = Serial.parseInt();
+          break;
+        default:
+          break;
+      }
       
       if ( Serial.read() == '\n' )
       {
-        setFreq( hz );
-        Serial.print( hz );
-        Serial.print( "Hz=" );
-        if ( hz == 0 )
+        switch ( comms_mode )
         {
-          Serial.print( "Off" );
+          case MODE_FREQ:
+            setFreq( val_int );
+            Serial.print( val_int );
+            Serial.print( "Hz=" );
+            if ( val_int == 0 )
+            {
+              Serial.print( "Off" );
+            }
+            else
+            {
+              Serial.print( overflow );
+              Serial.print( "=" );
+              Serial.print( getFreq() );
+              Serial.print( "Hz" );
+            }
+            break;
+            
+          case MODE_AMPL:
+            ampl = constrain( val_int, 0, MAX_AMPL );
+            Serial.print( "Ampl=" );
+            Serial.print( (int)ampl );
+            buildSin( ampl );
+            break;
+            
+          case MODE_FSWEEP:
+            fsweep_freq_start = freq;
+            fsweep_freq_end = constrain( fsweep_freq_end, 1, MAX_FREQ );
+            fsweep_rate = constrain( val_int, 1, MAX_RATE );
+            Serial.print( "Sweep " );
+            Serial.print( (int)fsweep_freq_start );
+            Serial.print( "Hz to " );
+            Serial.print( (int)fsweep_freq_end );
+            Serial.print( "Hz at " );
+            Serial.print( (int)fsweep_rate );
+            Serial.print( "t/Hz" );
+            
+            fsweep_rate *= 320;
+            fsweep_count = 0;
+            
+            /* Only start sweep if not off */
+            fsweeping = ( fsweep_freq_start != 0 );
+            break;
+            
+          default:
+            Serial.print( "Invalid" );
+            break;
         }
-        else
-        {
-          Serial.print( overflow );
-          Serial.print( "=" );
-          Serial.print( getFreq() );
-          Serial.print( "Hz" );
-        }
+        
         Serial.print( "\r\n" );
+        comms_mode = MODE_NONE;
       }
     }
     
     if ( go == 1 )
     {
       go = 0;
-//      test = 0;
-      
-//      value = (char)( ( sin( angle ) + 1 ) / 2 * 254 + 1 );
-//      angle += 0.02;
-      
       value = sine( angle++ ) + 128;
       angle &= SIN_LEN - 1;
       
       analogWrite( actPin0, value );
       analogWrite( actPin1, value );
       
-//      delay( 10 );
+      if ( fsweeping )
+      {
+        if ( fsweep_count <= 0 )
+        {
+          /* Finished 1 rate period */
+          
+          /* Adjust for one more rate period */
+          fsweep_count += fsweep_rate;
+          
+          /* Calculate and set new frequency */
+          if ( freq != fsweep_freq_end )
+          {
+            /* We are still ramping */
+            if ( freq < fsweep_freq_end )
+              freq++;
+            else
+              freq--;
+            
+            setFreq( freq );
+            /*
+            Serial.print( (int)freq );
+            Serial.print( "\r\n" );
+            /**/
+          }
+          else
+          {
+            fsweeping = 0;
+            Serial.print( "Sweep Done\r\n" );
+          }
+        }
+      }
       
       if ( go == 1 )
          Serial.print( "!\r\n" );
-      
-//      Serial.print( (int)(TCCR2A&0b11 | (TCCR2B>>1)&0b100) );
-//      Serial.print( (int)OCR2A );
-//      Serial.print( "\n" );
     }
-    
-//    delayMicroseconds( rate * 100000 );
   }
 } 
 
