@@ -19,3 +19,6 @@ Looked at some signal processing.  Normalized raw data, subtracted two sensors a
 Abhi doing further data processing/analysis.  Envelope detection.  Plotting envelope amplitude against sensor amplitude clearly shows difference between samples with/without tape.
 Added micro motion frequency sweep and amplitude control.  Now takes commands "f<frequency>", "a<amplitude>", "s<sweep freq target> <sweep rate>"
 Collected various sweep samples with/without tape and with thumb.  Used various forces.
+
+12/02/2016
+Testing real samples and reviewing last week's sweeps.
