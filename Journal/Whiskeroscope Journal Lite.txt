@@ -22,3 +22,5 @@ Collected various sweep samples with/without tape and with thumb.  Used various 
 
 12/02/2016
 Testing real samples and reviewing last week's sweeps.
+Tried both clamped sample and taped to rod.  Saw a weird discontinuity at 1Hz at a particular force.  Gap between sample and rod?
+Also repositioned breadboard so we get larger range across sensor without curl back.
