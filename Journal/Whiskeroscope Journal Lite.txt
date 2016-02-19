@@ -28,4 +28,4 @@ Also repositioned breadboard so we get larger range across sensor without curl b
 19/02/2016
 Installed everything on wood.  Looks nice.  Wire tied all the wires at the back of the whisker assembly.
 Gluing whisker in place and processing data.
-
+We've taken two samples of 3 stems of each plant.  The taped whisker is delivering solid data.
