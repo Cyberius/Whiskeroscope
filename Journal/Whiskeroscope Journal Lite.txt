@@ -24,3 +24,8 @@ Collected various sweep samples with/without tape and with thumb.  Used various 
 Testing real samples and reviewing last week's sweeps.
 Tried both clamped sample and taped to rod.  Saw a weird discontinuity at 1Hz at a particular force.  Gap between sample and rod?
 Also repositioned breadboard so we get larger range across sensor without curl back.
+
+19/02/2016
+Installed everything on wood.  Looks nice.  Wire tied all the wires at the back of the whisker assembly.
+Gluing whisker in place and processing data.
+
