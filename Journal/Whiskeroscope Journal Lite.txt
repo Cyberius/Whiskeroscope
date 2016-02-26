@@ -28,4 +28,12 @@ Also repositioned breadboard so we get larger range across sensor without curl b
 19/02/2016
 Installed everything on wood.  Looks nice.  Wire tied all the wires at the back of the whisker assembly.
 Gluing whisker in place and processing data.
-We've taken two samples of 3 stems of each plant.  The taped whisker is delivering solid data.
+We super glued the whisker platform to the motor, which worked surprisingly well.
+We've taken two samples of 3 stems of each plant.  The taped whisker is delivering high quality data.
+
+26/02/2016
+We looked at mounting handles to the base, but decided it's not necessary.
+We discussed what additional features we could extract and how to better process the data we have.  Again, we are very pleased with the quality of the data.
+We took more close up photos of the setup and discussed what to write in the report.
+We connected up everything to a USB hub and it worked fine.
+We sourced a good power supply, which Jan will order for us.
